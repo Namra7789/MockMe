@@ -5,7 +5,7 @@ import DisplayTechIcons from "./DisplayTechIcons";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { cn, getRandomInterviewCover } from "@/lib/utils";
-const InterviewCards = ({interviewId,
+const InterviewCards = ({id,
     userId,
     role,
     type,
@@ -70,8 +70,8 @@ const InterviewCards = ({interviewId,
             <Link
               href={
                 feedback
-                  ? `/interview/${interviewId}/feedback`
-                  : `/interview/${interviewId}`
+                  ? `/interview/${id}/feedback`
+                  : `/interview/${id}`
               } >
               {feedback ? "Check Feedback" : "View Interview"}
             </Link>
