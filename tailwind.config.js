@@ -35,19 +35,36 @@ module.exports = {
         ring: "var(--ring)",
 
         // Custom colors added from your CSS variables
-        success100: "var(--success-100)",
-        success200: "var(--success-200)",
-        destructive100: "var(--destructive-100)",
-        destructive200: "var(--destructive-200)",
-        primary100: "var(--primary-100)",
-        primary200: "var(--primary-200)",
-        light100: "var(--light-100)",
-        light400: "var(--light-400)",
-        light600: "var(--light-600)",
-        light800: "var(--light-800)",
-        dark100: "var(--dark-100)",
-        dark200: "var(--dark-200)",
-        dark300: "var(--dark-300)",
+        // Primary set
+        primary: {
+          100: "#A1C4FD",
+          200: "#4F8EF7",
+        },
+
+        // Success set
+        success: {
+          100: "#28C76F",
+          200: "#20A85A",
+        },
+
+        // Destructive (error) set
+        destructive: {
+          100: "#EA5455",
+          200: "#D13438",
+        },
+
+        // Dark colors (used heavily in your UI)
+        dark: {
+          100: "#0D0D0D",
+          200: "#1A1A1A",
+        },
+
+        // Light colors
+        light: {
+          100: "#F5F5F5",
+        },
+
+        input: "#2E2E2E", // border-input in your CSS
       },
     },
   },

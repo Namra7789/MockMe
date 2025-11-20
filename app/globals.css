@@ -178,18 +178,19 @@
 
 /* ---------- components layer (preserve everything) ---------- */
 @layer components {
+  /* ------------------ BUTTONS ------------------ */
+
   .btn-call {
-    @apply inline-block px-7 py-3 font-bold text-sm leading-5 text-white transition-colors duration-150 bg-[var(--color-success-100)] border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl min-w-28 cursor-pointer items-center justify-center overflow-visible;
+    @apply inline-block px-7 py-3 font-bold text-sm leading-5 text-white transition-colors duration-150 bg-success-100 border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl active:bg-success-200 hover:bg-success-200 min-w-28 cursor-pointer items-center justify-center overflow-visible;
   }
-  /* separate inner element styles using a child selector rather than nested @apply */
+
+  /* Tailwind v3 does NOT allow nested selectors inside @apply */
   .btn-call .span {
-    @apply bg-[var(--color-success-100)] ;
-    height: 85%;
-    width: 65%;
+    @apply bg-success-100 h-[85%] w-[65%];
   }
 
   .btn-disconnect {
-    @apply inline-block px-7 py-3 text-sm font-bold leading-5 text-white transition-colors duration-150 bg-[var(--color-destructive-100)] border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl min-w-28;
+    @apply inline-block px-7 py-3 text-sm font-bold leading-5 text-white transition-colors duration-150 bg-destructive-100 border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl active:bg-destructive-200 hover:bg-destructive-200 min-w-28;
   }
 
   .btn-upload {
@@ -197,73 +198,90 @@
   }
 
   .btn-primary {
-    /* base look via apply */
-    @apply w-fit bg-[var(--color-primary-200)] text-[var(--color-dark-100)] rounded-full font-bold px-5 cursor-pointer min-h-10;
-    /* hover with opacity handled via CSS (can't use /80 in @apply) */
-  }
-  .btn-primary:hover {
-    background-color: var(--primary-200-80);
+    @apply w-fit !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10;
   }
 
   .btn-secondary {
-    @apply w-fit bg-[var(--color-dark-200)] text-[var(--color-primary-200)] rounded-full font-bold px-5 cursor-pointer min-h-10;
-  }
-  .btn-secondary:hover {
-    /* slightly dim on hover */
-    background-color: color-mix(in srgb, var(--color-dark-200) 85%, transparent);
+    @apply w-fit !bg-dark-200 !text-primary-200 hover:!bg-dark-200/80 !rounded-full !font-bold px-5 cursor-pointer min-h-10;
   }
 
-  /* second btn-upload variant */
-  .btn-upload--alt {
-    @apply bg-[var(--color-dark-200)] rounded-full min-h-12 px-5 cursor-pointer border border-[var(--color-input)] overflow-hidden;
+  .btn-upload {
+    @apply bg-dark-200 rounded-full min-h-12 px-5 cursor-pointer border border-input overflow-hidden;
   }
+
+  /* ------------------ CARDS ------------------ */
 
   .card-border {
-    @apply p-0.5 rounded-2xl w-fit;
-    background: linear-gradient(180deg,#4B4D4F,#4B4D4F33);
+    @apply border-gradient p-0.5 rounded-2xl w-fit;
   }
 
   .card {
-    @apply rounded-2xl min-h-full;
-    background: linear-gradient(180deg,#1A1C20,#08090D);
+    @apply dark-gradient rounded-2xl min-h-full;
+  }
+
+  /* ------------------ FORMS ------------------ */
+
+  .form {
+    @apply w-full;
   }
 
   .form .label {
-    @apply text-[var(--color-light-100)] font-normal;
+    @apply !text-light-100 !font-normal;
   }
 
   .form .input {
-    @apply bg-[var(--color-dark-200)] rounded-full min-h-12 px-5;
-  }
-  .form .input::placeholder {
-    color: var(--color-light-100);
+    @apply !bg-dark-200 !rounded-full !min-h-12 !px-5 placeholder:!text-light-100;
   }
 
   .form .btn {
-    @apply w-full bg-[var(--color-primary-200)] text-[var(--color-dark-100)] rounded-full min-h-10 font-bold cursor-pointer;
+    @apply !w-full !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !min-h-10 !font-bold !px-5 cursor-pointer;
   }
-  .form .btn:hover {
-    background-color: var(--primary-200-80);
-  }
+
+  /* ------------------ CALL VIEW ------------------ */
 
   .call-view {
     @apply flex sm:flex-row flex-col gap-10 items-center justify-between w-full;
   }
 
-  .avatar {
-    @apply z-10 flex items-center justify-center;
-  }
-  .avatar .animate-speak {
-    @apply absolute inline-flex animate-ping rounded-full bg-[var(--color-primary-200)] opacity-75;
+  .call-view h3 {
+    @apply text-center text-primary-100 mt-5;
   }
 
+  .call-view .card-interviewer {
+    @apply flex-center flex-col gap-2 p-7 h-[400px] blue-gradient-dark rounded-lg border-2 border-primary-200/50 flex-1 sm:basis-1/2 w-full;
+  }
+
+  .call-view .avatar {
+    @apply z-10 flex items-center justify-center blue-gradient rounded-full size-[120px] relative;
+  }
+
+  .call-view .avatar .animate-speak {
+    @apply absolute inline-flex size-5/6 animate-ping rounded-full bg-primary-200 opacity-75;
+  }
+
+  .call-view .card-border {
+    @apply border-gradient p-0.5 rounded-2xl flex-1 sm:basis-1/2 w-full h-[400px] max-md:hidden;
+  }
+
+  .call-view .card-content {
+    @apply flex flex-col gap-2 justify-center items-center p-7 dark-gradient rounded-2xl min-h-full;
+  }
+
+  /* ------------------ TRANSCRIPT ------------------ */
+
   .transcript-border {
-    @apply p-0.5 rounded-2xl w-full;
+    @apply border-gradient p-0.5 rounded-2xl w-full;
   }
 
   .transcript-border .transcript {
-    @apply rounded-2xl min-h-12 px-5 py-3 flex items-center justify-center;
+    @apply dark-gradient rounded-2xl min-h-12 px-5 py-3 flex items-center justify-center;
   }
+
+  .transcript-border .transcript p {
+    @apply text-lg text-center text-white;
+  }
+
+  /* ------------------ FEEDBACK SECTION ------------------ */
 
   .section-feedback {
     @apply flex flex-col gap-8 max-w-5xl mx-auto max-sm:px-4 text-lg leading-7;
@@ -273,18 +291,25 @@
     @apply flex w-full justify-evenly gap-4 max-sm:flex-col max-sm:items-center;
   }
 
+  /* ------------------ AUTH LAYOUT ------------------ */
+
   .auth-layout {
     @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8;
   }
+
+  /* ------------------ ROOT LAYOUT ------------------ */
 
   .root-layout {
     @apply flex mx-auto max-w-7xl flex-col gap-12 my-12 px-16 max-sm:px-4 max-sm:my-8;
   }
 
+  /* ------------------ CTA CARD ------------------ */
+
   .card-cta {
-    @apply flex flex-row rounded-3xl px-16 py-6 items-center justify-between max-sm:px-4;
-    background: linear-gradient(90deg,#171532,#08090D);
+    @apply flex flex-row blue-gradient-dark rounded-3xl px-16 py-6 items-center justify-between max-sm:px-4;
   }
+
+  /* ------------------ INTERVIEW ITEMS ------------------ */
 
   .interviews-section {
     @apply flex flex-wrap gap-4 max-lg:flex-col w-full items-stretch;
@@ -295,24 +320,22 @@
   }
 
   .progress {
-    @apply h-1.5 text-[5px] font-bold rounded-full;
-    background-color: var(--color-primary-200);
+    @apply h-1.5 text-[5px] font-bold bg-primary-200 rounded-full flex-center;
   }
 
   .tech-tooltip {
-    @apply absolute bottom-full mb-1 hidden group-hover:flex px-2 py-1 text-xs text-white rounded-md shadow-md;
-    background: #333;
+    @apply absolute bottom-full mb-1 hidden group-hover:flex px-2 py-1 text-xs text-white bg-gray-700 rounded-md shadow-md;
   }
 
   .card-interview {
-    @apply rounded-2xl min-h-full flex flex-col p-6 relative overflow-hidden gap-10 justify-between;
-    background: linear-gradient(180deg,#1A1C20,#08090D);
+    @apply dark-gradient rounded-2xl min-h-full flex flex-col p-6 relative overflow-hidden gap-10 justify-between;
   }
 
   .card-interview .badge-text {
     @apply text-sm font-semibold capitalize;
   }
 }
+
 
 /* ---------- utilities (preserved) ---------- */
 @layer utilities {
