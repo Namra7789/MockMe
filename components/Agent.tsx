@@ -102,6 +102,8 @@ const Agent = ({
       } else {
         console.log("Error saving feedback");
         router.push("/");
+
+        return{ success: false}
       }
     };
 
